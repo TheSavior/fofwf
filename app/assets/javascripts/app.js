@@ -1,7 +1,8 @@
 angular.module('fofwfApp', []).
   config(['$routeProvider', function($routeProvider) {
   $routeProvider.
-      when('/phones', {templateUrl: 'templates/message-list.html',   controller: MessageListCtrl}).
-      //when('/phones/:phoneId', {templateUrl: 'partials/phone-detail.html', controller: PhoneDetailCtrl}).
-      otherwise({redirectTo: '/phones'});
+      when('/login', {templateUrl: 'templates/login.html',   controller: LoginCtrl}).
+      when('/messages', {templateUrl: 'templates/message-list.html',   controller: MessageListCtrl}).
+      when('/message/:messageId', {templateUrl: 'templates/message.html', controller: MessageCtrl}).
+      otherwise({redirectTo: '/login'});
 }]);
