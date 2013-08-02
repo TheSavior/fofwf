@@ -1,6 +1,6 @@
 Fofwf::Application.routes.draw do
   resources :message_threads
-  root "static#index"
+  root "app#index"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
