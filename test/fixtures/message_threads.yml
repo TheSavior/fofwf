@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  uuid_1: MyString
+  uuid_2: MyString
+  mutual_friends: MyString
+  mutual_friends_found: MyString
+
+two:
+  uuid_1: MyString
+  uuid_2: MyString
+  mutual_friends: MyString
+  mutual_friends_found: MyString
