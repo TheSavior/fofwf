@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130802210406) do
+ActiveRecord::Schema.define(version: 20130802221712) do
 
   create_table "message_threads", force: true do |t|
     t.string   "uuid_1"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20130802210406) do
     t.text     "content"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "thread_id"
   end
 
 end
