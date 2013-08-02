@@ -9,16 +9,17 @@
   <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <!-- Latest compiled and minified JavaScript -->
-  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/js/bootstrap.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular-resource.min.js"></script>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/js/bootstrap.min.js"></script>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
 <%= yield %>
 
-<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js"></script>
-<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular-resource.min.js"></script>
-  <%= javascript_include_tag "application" %>
+  <div class="container" ng-view>
+  </div>
 </body>
 </html>
