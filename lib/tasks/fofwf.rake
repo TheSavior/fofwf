@@ -6,9 +6,9 @@ namespace :fofwf do
     mt.save
     Message.create({:thread_id => mt.id, :sender_uuid => '1', :content => 'Message 1'})
     sleep 2
-    Message.create({:thread_id => mt.id, :sender_uuid => '1', :content => 'Message 2'})
+    Message.create({:thread_id => mt.id, :sender_uuid => '2', :content => 'Message 2'})
     sleep 2
-    Message.create({:thread_id => mt.id, :sender_uuid => '1', :content => 'Message 3'})
+    Message.create({:thread_id => mt.id, :sender_uuid => '2', :content => 'Message 3'})
     sleep 2
     Message.create({:thread_id => mt.id, :sender_uuid => '1', :content => 'Message 4'})
     sleep 2
