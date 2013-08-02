@@ -1,6 +1,13 @@
-<ul class="phones">
-  <li ng-repeat="phone in phones">
-    <a href="#/phones/{{phone.id}}">{{phone.name}}</a>
-    <p>{{phone.snippet}}</p>
-  </li>
-</ul>
+<div class="message-container" ng-repeat="message in messages">
+	<div class="row">
+		<div class="col-8">{{message.time}}</div>
+		<div class="col-4 text-right">
+      <div class="row">
+        {{message.current}} / {{message.total}}
+      </div>
+      <div class="row">
+         {{message.friends}}
+      </div>
+    </div>
+	</div>
+</div>
