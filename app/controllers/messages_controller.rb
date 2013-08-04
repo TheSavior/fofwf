@@ -9,5 +9,6 @@ class MessagesController < ApplicationController
     message.content = params[:content]
     message.thread_id = params[:thread_id]
     message.save
+    render json: {:status => 'ok'}
   end
 end
