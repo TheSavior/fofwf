@@ -1,0 +1,5 @@
+development:
+	server: localhost
+	port: 7474
+	
+production:

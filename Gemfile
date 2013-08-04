@@ -11,6 +11,8 @@ gem 'angularjs-rails'
 
 gem "koala", "~> 1.7.0rc1"
 
+gem 'neography'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 
