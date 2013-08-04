@@ -1,4 +1,4 @@
-angular.module('fofwfApp', []).
+angular.module('fofwfApp', ['hmTouchEvents']).
   config(['$routeProvider', function($routeProvider) {
   $routeProvider.
       when('/', {templateUrl: 'templates/message-list.html',   controller: MessageListCtrl}).
