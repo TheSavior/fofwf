@@ -1,19 +1,27 @@
 @import "_mixins";
 
 .message-page {
-	.nav {
-    background-color: rgba(33,33,33,.5);
-    padding: 5px;
-    border-bottom: 1px solid rgba(33,33,33,1);
-    color: white;
+  height: 100%;
 
-    p {
-      line-height: 40px;
-      margin: 0;
-      padding: 0;
+  header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+
+    .nav {
+      background-color: rgba(33,33,33,.5);
+      padding: 5px;
+      border-bottom: 1px solid rgba(33,33,33,1);
+      color: white;
+
+      p {
+        line-height: 40px;
+        margin: 0;
+        padding: 0;
+      }
     }
   }
-
+	
   .guess-box, .send-message-margin {
     border: 1px solid rgba(33,33,33,1);
     border-top: 0px;
@@ -42,10 +50,14 @@
   }
 
   .message-page-container {
+    height: 100%;
     margin: 0px 15px;
 
+    padding: 100px 0 50px 0;
+
     .messages-wrapper {
-      margin: 10px 0px;
+      height: 100%;
+      overflow-y: auto;
 
       .message {
         padding: 5px 10px;
