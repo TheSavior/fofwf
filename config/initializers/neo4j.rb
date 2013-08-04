@@ -10,7 +10,7 @@ Neography.configure do |config|
   config.log_enabled    = false
   config.max_threads    = 20
   config.authentication = nil  # 'basic' or 'digest'
-  config.username       = nil
-  config.password       = nil
+  config.username       = NEO4J_CONFIG['username']
+  config.password       = NEO4J_CONFIG['password']
   config.parser         = MultiJsonParser
 end
