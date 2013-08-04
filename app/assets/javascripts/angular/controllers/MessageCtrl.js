@@ -31,18 +31,13 @@ var MessageCtrl = ['$scope', '$routeParams', '$http', function($scope, $routePar
   };
 
   $scope.sendMessage = function(message) {
-    /*
-    $http.post("/attempt_match/"+$scope.id, {guess: guess})
+    $http.post("/messages", {thread_id: $scope.id, content: message})
     .success(function(data, status, headers, config) {
         console.log(data);
-        if (data.guess == "correct") {
-          $scope.data.number_matched = data.count;
-        }
     }).error(function(data, status, headers, config) {
         console.error(data);
         console.error(status);
     });
-    */
   };
 
   function check() {
