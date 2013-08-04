@@ -1,2 +1,2 @@
-class MessageThreadController < ApplicationController
+class MessageThreadsController < ApplicationController
 end
