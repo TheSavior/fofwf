@@ -10,7 +10,7 @@ class AppController < ApplicationController
   end
   def index
 	if !session[:user_id]
-		render :login, :layout=>"loginLayout"
+		render :login
 	end
   end
 end
