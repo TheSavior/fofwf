@@ -9,8 +9,13 @@ class AppController < ApplicationController
     redirect_to root_url
   end
   def index
-	if !session[:user_id]
-		render :login
-	end
+    if !session[:user_id]
+      redirect_to :controller=>'login', :action => 'index'
+    end
+  end
+
+  def destroy
+    session[:user_id] = nil
+    redirect_to :controller=>'login', :action => 'index'
   end
 end
