@@ -27,7 +27,7 @@
   <div class="text-center send-message-wrapper">
   	<div class="send-message-margin">
   		<form class="form-inline">
-	  		<input type="text" class="form-control" /><button class="btn btn-small btn-primary">Send</button>
+	  		<input type="text" class="form-control" ng-model="messageText" /><button hm-tap="sendMessage(messageText)" class="btn btn-small btn-primary">Send</button>
 	  	</form>
     </div>
   </div>
