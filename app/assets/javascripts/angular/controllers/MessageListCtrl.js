@@ -1,5 +1,6 @@
 var MessageListCtrl = ['$scope', '$http',
     function($scope, $http) {
+        /*
         $scope.messages = [{
             "id": 4,
             "time": "3 Days ago",
@@ -22,17 +23,18 @@ var MessageListCtrl = ['$scope', '$http',
             "current": 0,
             "friends": ""
         }, ];
+        */
 
-        $scope.getData = function() {
-            console.log("Getting messages");
+        $scope.init = function() {
             $http.get("/message_threads")
             .success(function(data, status, headers, config) {
-                console.log(data);
-
+                $scope.messages = data;
             }).error(function(data, status, headers, config) {
                 console.error(data);
                 console.error(status);
             });
         };
+
+        $scope.init();
     }
 ];
