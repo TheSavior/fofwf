@@ -18,6 +18,8 @@ class AppController < ApplicationController
         node_friend = @neo.create_node("id" => friend['id'], "name" => friend['name'])
         @neo.add_node_to_index('user', 'id', friend['id'], node_friend)
       end
+      id_me = @neo.get_node_properties(node_me, ['id'])['id']
+      id_friend = @neo.get_node_properties(node_me, ['id'])['id']
       rel = @neo.create_relationship("friend", node_me, node_friend)
     end
     redirect_to root_url
