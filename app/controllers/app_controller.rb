@@ -23,9 +23,9 @@ class AppController < ApplicationController
     redirect_to root_url
   end
   def index
-    #if !session[:user_id]
-    #  redirect_to :controller=>'login', :action => 'index'
-    #end
+    if !session[:user_id]
+      redirect_to :controller=>'login', :action => 'index'
+    end
   end
 
   def destroy
