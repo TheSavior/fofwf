@@ -6,6 +6,9 @@ class AppController < ApplicationController
     profile = @graph.get_object("me")
     friends = @graph.get_connections("me", "friends")
     @neo = Neography::Rest.new
+
+    puts "========"+session[:user_id]+"========"
+
     node_me = @neo.get_node_index('user', 'id', session[:user_id])
     if !node_me
       node_me = @neo.create_node("id" => session[:user_id], "name" => env['omniauth.auth'].info.name)
