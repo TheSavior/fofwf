@@ -1,27 +1,36 @@
 <div class="message-page">
 	
-	<div class="row">
-		<a href="#/" class="btn btn-default"><i class="icon-arrow-left"></i> Back</a>
-	</div>
-	<div class="row text-center">
-		<p class="lead">
+	<div class="row nav">
+		<a href="#/" class="btn btn-default"><i class="icon-reorder"></i></a>
+		<p class="pull-right">
 			0/4 mutual friends
 		</p>
-		<input type="text" placeholder="Guess a name" /><button class="btn btn-small btn-primary">Guess</a>
 	</div>
 
-	<div class="row text-left">
-		Hey what is your name?
-	</div>
-	<div class="row text-right">
-		Yo! My name is Bryan!
-	</div>
-	<div class="row text-left">
-		Meh, that is cheating.
+	<div class="message-page-container">
+		<div class="row">
+			<div class="guess-box text-center">
+				<input type="text" placeholder="Guess a name" /><button class="btn btn-small btn-primary">Guess</a>
+			</div>
+		</div>
+		<div class="messages-wrapper">
+			<div class="row message-other">
+				Hey what is your name?
+			</div>
+			<div class="row message-mine">
+				Yo! My name is Bryan!
+			</div>
+			<div class="row message-other">
+				Meh, that is cheating.
+			</div>
+		</div>
 	</div>
 
-  <div class="row text-center message-wrapper">
-    <input type="text" /><button class="btn btn-small btn-primary">Send</button>
+
+  <div class="text-center send-message-wrapper">
+  	<div class="send-message-margin">
+  		<input type="text" /><button class="btn btn-small btn-primary">Send</button>
+    </div>
   </div>
 </div>
 
