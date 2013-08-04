@@ -1,3 +1,5 @@
+require 'neography'
+
 class AppController < ApplicationController
 
   def create
