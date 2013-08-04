@@ -19,8 +19,17 @@ class AppController < ApplicationController
         @neo.add_node_to_index('user', 'id', friend['id'], node_friend)
       end
       id_me = @neo.get_node_properties(node_me, ['id'])['id']
-      id_friend = @neo.get_node_properties(node_me, ['id'])['id']
-      rel = @neo.create_relationship("friend", node_me, node_friend)
+      id_friend = @neo.get_node_properties(node_friend, ['id'])['id']
+      if(id_me < id_friend)
+        val = id_me.to_s + '::' +id_friend.to_s
+      else
+        val = id_friend.to_s + '::' +id_me.to_s
+      end
+      rel = @neo.get_relationship_index('friend', 'ids', val)
+      if !rel
+        rel = @neo.create_relationship("friend", node_me, node_friend)
+        @neo.add_relationship_to_index('friend', 'ids', val, rel)
+      end
     end
     redirect_to root_url
   end
