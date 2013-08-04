@@ -3,7 +3,7 @@
 	<div class="row nav">
 		<a href="#/" class="btn btn-default"><i class="icon-reorder"></i></a>
 		<p class="pull-right">
-			0/4 mutual friends
+			{{data.number_matched}}/{{data.total_mutal_friends}} mutual friends
 		</p>
 	</div>
 
@@ -13,15 +13,9 @@
 				<input type="text" placeholder="Guess a name" /><button class="btn btn-small btn-primary">Guess</a>
 			</div>
 		</div>
-		<div class="messages-wrapper">
-			<div class="row message-other">
-				Hey what is your name?
-			</div>
-			<div class="row message-mine">
-				Yo! My name is Bryan!
-			</div>
-			<div class="row message-other">
-				Meh, that is cheating.
+		<div class="messages-wrapper" ng-repeat="message in data.messages_list">
+			<div class="row message ng-class:message.sender">
+				{{message.text}}
 			</div>
 		</div>
 	</div>

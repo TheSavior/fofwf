@@ -43,28 +43,27 @@
     .messages-wrapper {
       margin: 10px 0px;
 
-      .message-other, .message-mine {
+      .message {
         padding: 5px 10px;
         width: 80%;
         @include border-radius(5px);
         margin-bottom: 5px;
-      }
 
-      .message-other {
-        float: left;
-        text-align: left;
-        $bg: rgba(200, 150, 200, 1);
-        background-color: $bg;
-        border: 1px solid darken($bg, 25)
+        &.me {
+          float: right;
+          $bg: rgba(150, 200, 200, 1);
+          text-align: right;
+          background-color: $bg;
+          border: 1px solid darken($bg, 25);
+        }
 
-      }
-
-      .message-mine {
-        float: right;
-        $bg: rgba(150, 200, 200, 1);
-        text-align: right;
-        background-color: $bg;
-        border: 1px solid darken($bg, 25);
+        &.them {
+          float: left;
+          text-align: left;
+          $bg: rgba(200, 150, 200, 1);
+          background-color: $bg;
+          border: 1px solid darken($bg, 25)
+        }
       }
     }
   }

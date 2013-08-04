@@ -6,6 +6,7 @@ var MessageCtrl = ['$scope', '$routeParams', '$http', function($scope, $routePar
     $http.get("/message_threads/"+$scope.id)
     .success(function(data, status, headers, config) {
         console.log(data);
+        $scope.data = data;
 
     }).error(function(data, status, headers, config) {
         console.error(data);
