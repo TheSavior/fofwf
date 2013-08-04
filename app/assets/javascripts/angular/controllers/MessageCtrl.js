@@ -1,10 +1,9 @@
 var MessageCtrl = ['$scope', '$routeParams', '$http', function($scope, $routeParams, $http) {
   $scope.id = $routeParams.messageId;
 
-  $scope.getMessages = function() {
-    debugger
+  $scope.getMessages = function($scope) {
     console.log("Getting messages");
-    $http.get("/message_threads/".$scope.id)
+    $http.get("/message_threads/"+$scope.id)
     .success(function(data, status, headers, config) {
         console.log(data);
 
@@ -14,5 +13,5 @@ var MessageCtrl = ['$scope', '$routeParams', '$http', function($scope, $routePar
     });
   };
 
-  $scope.getMessages();
+  $scope.getMessages($scope);
 }];
