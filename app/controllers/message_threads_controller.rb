@@ -18,13 +18,42 @@ class MessageThreadsController < ApplicationController
   end
 
   def show
-    if !session[user_id]
+    if !session['user_id']
       redirect_to root_url
+    else
+      @message_thread = MessageThread.find(params[:id])
+      if session['user_id'] != @message_thread.uuid_1 && session['user_id'] != @message_thread.uuid_2
+        render :json => {"status" => "unauthorized"}
+      else
+        @messages = Message.where("thread_id = ?", @message_thread.id)
+        @messages_list = @messages.map do |u|
+          sender_text = 'them'
+          if u.sender_uuid == session['user_id']
+            sender_text = 'me'
+          end
+          {:sender => sender_text,:timestamp => u.created_at, :text => u.content}
+        end
+        render :json => {:total_mutal_friends => @message_thread.mutual_friends.split(',').count, :number_matched => @message_thread.mutual_friends_found.split(',').count, :messages_list => @messages_list}
+      end
     end
-    @message_thread = MessageThread.find(params[:id])
-    if session['user_id'] != @message_thread.uuid_1 || session['user_id'] != @message_thread.uuid_2
-      render :json {"status" => "unauthorized"}
+  end
+
+  def attempt_match
+    if !session['user_id']
+      redirect_to root_url
+    else
+      @message_thread = MessageThread.find(params[:id])
+      if session['user_id'] != @message_thread.uuid_1 && session['user_id'] != @message_thread.uuid_2
+        render :json => {"status" => "unauthorized"}
+      else
+        if @message_thread.mutual_friends.split(',').any?{ |s| s.casecmp(params['guess'])==0 } && !@message_thread.mutual_friends_found.split(',').any?{ |s| s.casecmp(params['guess'])==0 }
+          @message_thread.mutual_friends+= @message_thread.mutual_friends.split(',').count==0 ? '' : ',' + params['guess']
+          @message_thread.save
+          render :json => {:guess => 'correct'}
+        else
+          render :json => {:guess => 'incorrect'}
+        end
+      end
     end
-    @messages = Messages.where("thread_id = ?", session['user_id'])
   end
 end
