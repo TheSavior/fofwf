@@ -1,3 +1,19 @@
-.messages-page {
+@import "_mixins";
 
+.messages-page {
+  .message-link {
+  }
+
+  .message-box {
+    border-bottom: 1px solid gray;
+    overflow: hidden;
+    display: block;
+    padding: 5px 10px;
+  }
+
+  .new-message-btn {
+    position: absolute;
+    bottom: 0;
+    @include border-radius(0px);
+  }
 }

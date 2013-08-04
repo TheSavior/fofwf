@@ -1,9 +1,18 @@
 <div class="messages-page">
   <div class="message-container">
-    <a href="#/message/{{message.id}}" ng-repeat="message in messages">
-    	<div class="row">
-    		<div class="col-8">{{message.time}}</div>
-    		<div class="col-4 text-right">
+    <a href="#/message/{{message.id}}" ng-repeat="message in messages" >
+    	<div class="row message-box">
+    		<div class="col-6">
+          <div class="row message-time">
+            <strong>{{message.time}}</strong>
+          </div>
+          <div class="row">
+            <em>
+              {{message.last_message}}
+            </em>
+          </div>
+        </div>
+    		<div class="col-6 text-right">
           <div class="row">
             {{message.current}} / {{message.total}}
           </div>
@@ -14,8 +23,9 @@
     	</div>
     </a>
   </div>
-</div>
 
-<a href="#/message/4" class="btn btn-block btn-primary">
-  New Message!
-</a>  
+
+  <a href="#/message/4" class="new-message-btn btn btn-block btn-primary">
+    New Message!
+  </a>  
+</div>
