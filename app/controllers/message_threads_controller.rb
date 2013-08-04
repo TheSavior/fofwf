@@ -81,7 +81,12 @@ class MessageThreadsController < ApplicationController
       "AND NOT (a-[thread*1..1]-friend_of_friend) "\
       "AND HAS(friend_of_friend.last_login) "\
       "RETURN DISTINCT friend_of_friend"
-    response = @neo.execute_query(query)['data'][-1]
+    puts "+++++++++++++++++++++++++++++++++++++" + Time.now().to_s
+    response = @neo.execute_query(query,{:stats => true, :profile => true})
+    puts response
+    response = response['data'][-1]
+
+    puts "=======================================" +Time.now().to_s
     if response
       @message_thread = MessageThread.new
       @message_thread.uuid_1 = session['user_id']

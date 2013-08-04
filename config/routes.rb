@@ -5,6 +5,7 @@ Fofwf::Application.routes.draw do
   get 'login', to: 'login#index'
   post 'attempt_match/:id', to: 'message_threads#attempt_match'
   resources :message_threads
+  resources :messages
   root 'app#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
