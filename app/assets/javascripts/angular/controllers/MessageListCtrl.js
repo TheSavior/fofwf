@@ -1,5 +1,5 @@
-var MessageListCtrl = ['$scope',
-    function($scope) {
+var MessageListCtrl = ['$scope', '$http',
+    function($scope, $http) {
         $scope.messages = [{
             "time": "3 Days ago",
             "last_message": "What did you think of...",
@@ -19,5 +19,17 @@ var MessageListCtrl = ['$scope',
             "current": 0,
             "friends": ""
         }, ];
+
+        $scope.getData = function() {
+            console.log("Getting messages");
+            $http.get("/message_threads")
+            .success(function(data, status, headers, config) {
+                console.log(data);
+
+            }).error(function(data, status, headers, config) {
+                console.error(data);
+                console.error(status);
+            });
+        };
     }
 ];
