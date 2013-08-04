@@ -1,4 +1,5 @@
 class MessageThreadsController < ApplicationController
+  skip_before_filter :verify_authenticity_token
   def index
     if !session['user_id']
       redirect_to root_url and return
@@ -50,24 +51,25 @@ class MessageThreadsController < ApplicationController
                      :number_matched => @message_thread.mutual_friends_found.split(',').count,
                      :messages_list => @messages_list}
   end
-end
 
-def attempt_match
-  if !session['user_id']
-    redirect_to root_url and return
-  end
-  @message_thread = MessageThread.find_by_id(params[:id])
-  if !@message_thread
-    render nothing: true, status: :not_found and return
-  end
-  if session['user_id'] != @message_thread.uuid_1 && session['user_id'] != @message_thread.uuid_2
-    render nothing: true, status: :unauthorized and return
-  end
-  if @message_thread.mutual_friends.split(',').any?{ |s| s.casecmp(params['guess'])==0 } && !@message_thread.mutual_friends_found.split(',').any?{ |s| s.casecmp(params['guess'])==0 }
-    @message_thread.mutual_friends+= @message_thread.mutual_friends.split(',').count==0 ? '' : ',' + params['guess']
-    @message_thread.save
-    render :json => {:guess => 'correct'}
-  else
-    render :json => {:guess => 'incorrect'}
+
+  def attempt_match
+    if !session['user_id']
+      redirect_to root_url and return
+    end
+    @message_thread = MessageThread.find_by_id(params[:id])
+    if !@message_thread
+      render nothing: true, status: :not_found and return
+    end
+    if session['user_id'] != @message_thread.uuid_1 && session['user_id'] != @message_thread.uuid_2
+      render nothing: true, status: :unauthorized and return
+    end
+    if @message_thread.mutual_friends.split(',').any?{ |s| s.casecmp(params['guess'])==0 } && !@message_thread.mutual_friends_found.split(',').any?{ |s| s.casecmp(params['guess'])==0 }
+      @message_thread.mutual_friends_found+= @message_thread.mutual_friends_found.split(',').count==0 ? '' : ',' + params['guess']
+      @message_thread.save
+      render :json => {:guess => 'correct'}
+    else
+      render :json => {:guess => 'incorrect'}
+    end
   end
 end
