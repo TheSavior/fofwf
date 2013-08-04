@@ -1,6 +1,6 @@
 class MessageThreadsController < ApplicationController
   def index
-    if !session[user_id]
+    if !session['user_id']
       redirect_to root_url
     end
     @message_threads = MessageThread.where("uuid_1 = ? OR uuid_2 = ?", session['user_id'], session['user_id']);
