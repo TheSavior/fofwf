@@ -20,6 +20,7 @@ var MessageCtrl = ['$scope', '$routeParams', '$http', function($scope, $routePar
         console.log(data);
         if (data.guess == "correct") {
           $scope.data.number_matched = data.count;
+          $scope.guess = "";
         }
     }).error(function(data, status, headers, config) {
         console.error(data);
