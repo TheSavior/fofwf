@@ -34,6 +34,7 @@ var MessageCtrl = ['$scope', '$routeParams', '$http', function($scope, $routePar
     $http.post("/messages", {thread_id: $scope.id, content: message})
     .success(function(data, status, headers, config) {
         console.log(data);
+        $scope.messageText = "";
     }).error(function(data, status, headers, config) {
         console.error(data);
         console.error(status);
