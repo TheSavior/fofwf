@@ -9,6 +9,8 @@ gem 'omniauth-facebook'
 
 gem 'angularjs-rails'
 
+gem "koala", "~> 1.7.0rc1"
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 
