@@ -3,5 +3,5 @@ development:
     port: 7474
 
 production:
-    server: something
+    server: CONFIG_ME
     port: 9000
