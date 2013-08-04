@@ -25,7 +25,7 @@ var MessageListCtrl = ['$scope', '$http',
         }, ];
         */
 
-        $scope.init = function() {
+        $scope.getMessages = function() {
             $http.get("/message_threads")
             .success(function(data, status, headers, config) {
                 $scope.messages = data;
@@ -35,6 +35,6 @@ var MessageListCtrl = ['$scope', '$http',
             });
         };
 
-        $scope.init();
+        $scope.getMessages();
     }
 ];
