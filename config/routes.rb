@@ -1,4 +1,7 @@
 Fofwf::Application.routes.draw do
+  get 'auth/:provider/callback', to: 'app#create'
+  get 'auth/failure', to: redirect('/')
+  get 'signout', to: 'app#destroy', as: 'signout'
   resources :message_threads
   root "app#index"
   # The priority is based upon order of creation: first created -> highest priority.
