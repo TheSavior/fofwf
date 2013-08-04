@@ -12,7 +12,7 @@
   }
 
   .new-message-btn {
-    position: absolute;
+    position: fixed;
     bottom: 0;
     @include border-radius(0px);
   }

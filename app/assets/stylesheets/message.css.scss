@@ -1,3 +1,83 @@
+@import "_mixins";
+
 .message-page {
-	
+	.nav {
+    background-color: rgba(33,33,33,.5);
+    padding: 5px;
+    border-bottom: 1px solid rgba(33,33,33,1);
+    color: white;
+
+    p {
+      line-height: 40px;
+      margin: 0;
+      padding: 0;
+    }
+  }
+
+  .guess-box, .send-message-margin {
+    border: 1px solid rgba(33,33,33,1);
+    border-top: 0px;
+    padding: 5px;
+    background-color: rgba(33,33,33,.3);
+
+    input[type="text"], .btn {
+      height: 30px;
+    }
+
+    input[type="text"] {
+      @include rounded(top, right, 0);
+      @include rounded(bottom, right, 0);
+      border-right: 0;
+    }
+
+    .btn {
+      @include rounded(top, left, 0);
+      @include rounded(bottom, left, 0);
+      vertical-align: bottom;
+    }
+  }
+
+  .message-page-container {
+    margin: 0px 15px;
+
+    .messages-wrapper {
+      margin: 10px 0px;
+
+      .message-other, .message-mine {
+        padding: 5px 10px;
+        width: 80%;
+        @include border-radius(5px);
+        margin-bottom: 5px;
+      }
+
+      .message-other {
+        float: left;
+        text-align: left;
+        $bg: rgba(200, 150, 200, 1);
+        background-color: $bg;
+        border: 1px solid darken($bg, 25)
+
+      }
+
+      .message-mine {
+        float: right;
+        $bg: rgba(150, 200, 200, 1);
+        text-align: right;
+        background-color: $bg;
+        border: 1px solid darken($bg, 25);
+      }
+    }
+  }
+
+  .send-message-wrapper {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+
+    .send-message-margin {
+      margin: 0px 10px;
+      border: 1px solid black;
+
+    }
+  }
 }
