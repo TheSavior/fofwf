@@ -6,13 +6,10 @@ class AppController < ApplicationController
     profile = @graph.get_object("me")
     friends = @graph.get_connections("me", "friends")
     @neo = Neography::Rest.new
-
-    puts "========"+session[:user_id]+"========"
-
     node_me = @neo.get_node_index('user', 'id', session[:user_id])
     if !node_me
       node_me = @neo.create_node("id" => session[:user_id], "name" => env['omniauth.auth'].info.name)
-      @neo.add_node_to_index('users', 'id', session[:user_id], node_me)
+      @neo.add_node_to_index('user', 'id', session[:user_id], node_me)
     end
     @neo.set_node_properties(node_me, {'last_login' => Time.now()})
     friends.each do |friend|
@@ -21,7 +18,7 @@ class AppController < ApplicationController
         node_friend = @neo.create_node("id" => friend['id'], "name" => friend['name'])
         @neo.add_node_to_index('user', 'id', friend['id'], node_friend)
       end
-      rel = @neo.create_relationship("friend", node_friend, node_me)
+      rel = @neo.create_relationship("friend", node_me, node_friend)
     end
     redirect_to root_url
   end
