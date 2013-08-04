@@ -2,9 +2,9 @@ Fofwf::Application.routes.draw do
   get 'auth/:provider/callback', to: 'app#create'
   get 'auth/failure', to: redirect('/')
   get 'signout', to: 'app#destroy', as: 'signout'
-  get 'login', to login
+  get 'login', to: 'login#index'
   resources :message_threads
-  root "app#index"
+  root 'app#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -1,5 +1,7 @@
 development:
-	server: localhost
-	port: 7474
-	
+    server: localhost
+    port: 7474
+
 production:
+    server: something
+    port: 9000
