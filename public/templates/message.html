@@ -1,13 +1,11 @@
 <div class="message-page">
-	
-	<div class="row nav">
-		<a href="#/" class="btn btn-default"><i class="icon-reorder"></i></a>
-		<p class="pull-right">
-			{{data.number_matched}}/{{data.total_mutal_friends}} mutual friends
-		</p>
-	</div>
-
-	<div class="message-page-container">
+	<header>
+		<div class="row nav">
+			<a href="#/" class="btn btn-default"><i class="icon-reorder"></i></a>
+			<p class="pull-right">
+				{{data.number_matched}}/{{data.total_mutal_friends}} mutual friends
+			</p>
+		</div>
 		<div class="row">
 			<div class="guess-box text-center">
 				<form class="form-inline">
@@ -15,8 +13,11 @@
 				</form>
 			</div>
 		</div>
-		<div class="messages-wrapper" ng-repeat="message in data.messages_list">
-			<div class="row message ng-class:message.sender">
+	</header>
+
+	<div class="message-page-container">
+		<div class="messages-wrapper">
+			<div class="row message ng-class:message.sender" ng-repeat="message in data.messages_list">
 				{{message.text}}
 			</div>
 		</div>
