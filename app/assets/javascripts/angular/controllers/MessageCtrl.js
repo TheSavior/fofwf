@@ -14,5 +14,16 @@ var MessageCtrl = ['$scope', '$routeParams', '$http', function($scope, $routePar
     });
   };
 
+  $scope.makeGuess = function(guess) {
+    $http.post("/attempt_match/"+$scope.id, {guess: guess})
+    .success(function(data, status, headers, config) {
+        console.log(data);
+
+    }).error(function(data, status, headers, config) {
+        console.error(data);
+        console.error(status);
+    });
+  };
+
   $scope.getMessages($scope);
 }];

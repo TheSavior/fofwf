@@ -10,7 +10,9 @@
 	<div class="message-page-container">
 		<div class="row">
 			<div class="guess-box text-center">
-				<input type="text" placeholder="Guess a name" /><button class="btn btn-small btn-primary">Guess</a>
+				<form class="form-inline">
+					<input type="text" class="form-control" ng-model="guess" placeholder="Guess a name" /><button hm-tap="makeGuess(guess)" class="btn btn-small btn-primary">Guess</button>
+				</form>
 			</div>
 		</div>
 		<div class="messages-wrapper" ng-repeat="message in data.messages_list">
@@ -23,7 +25,9 @@
 
   <div class="text-center send-message-wrapper">
   	<div class="send-message-margin">
-  		<input type="text" /><button class="btn btn-small btn-primary">Send</button>
+  		<form class="form-inline">
+	  		<input type="text" class="form-control" /><button class="btn btn-small btn-primary">Send</button>
+	  	</form>
     </div>
   </div>
 </div>

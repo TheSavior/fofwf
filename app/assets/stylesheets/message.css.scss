@@ -20,21 +20,25 @@
     padding: 5px;
     background-color: rgba(33,33,33,.3);
 
-    input[type="text"], .btn {
-      height: 30px;
-    }
+    .form-inline {
+      input[type="text"], .btn {
+        height: 30px;
+      }
 
-    input[type="text"] {
-      @include rounded(top, right, 0);
-      @include rounded(bottom, right, 0);
-      border-right: 0;
-    }
+      input[type="text"] {
+        @include rounded(top, right, 0);
+        @include rounded(bottom, right, 0);
+        border-right: 0;
+        width: 200px;
+      }
 
-    .btn {
-      @include rounded(top, left, 0);
-      @include rounded(bottom, left, 0);
-      vertical-align: bottom;
-    }
+      .btn {
+        @include rounded(top, left, 0);
+        @include rounded(bottom, left, 0);
+        vertical-align: bottom;
+        width: auto;
+      }
+    }    
   }
 
   .message-page-container {
