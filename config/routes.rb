@@ -3,6 +3,7 @@ Fofwf::Application.routes.draw do
   get 'auth/failure', to: redirect('/')
   get 'signout', to: 'app#destroy', as: 'signout'
   get 'login', to: 'login#index'
+  post 'attempt_match/:id', to: 'message_threads#attempt_match'
   resources :message_threads
   root 'app#index'
   # The priority is based upon order of creation: first created -> highest priority.

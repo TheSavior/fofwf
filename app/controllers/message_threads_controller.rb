@@ -1,6 +1,6 @@
 class MessageThreadsController < ApplicationController
   def index
-    if !session[user_id]
+    if !session['user_id']
       redirect_to root_url
     end
     @message_threads = MessageThread.where("uuid_1 = ? OR uuid_2 = ?", session['user_id'], session['user_id']);
@@ -23,7 +23,7 @@ class MessageThreadsController < ApplicationController
     else
       @message_thread = MessageThread.find(params[:id])
       if session['user_id'] != @message_thread.uuid_1 && session['user_id'] != @message_thread.uuid_2
-        render :json => {"status" => "unauthorized"}
+        render nothing: true, status: :unauthorized
       else
         @messages = Message.where("thread_id = ?", @message_thread.id)
         @messages_list = @messages.map do |u|
@@ -44,7 +44,7 @@ class MessageThreadsController < ApplicationController
     else
       @message_thread = MessageThread.find(params[:id])
       if session['user_id'] != @message_thread.uuid_1 && session['user_id'] != @message_thread.uuid_2
-        render :json => {"status" => "unauthorized"}
+        rrender nothing: true, status: :unauthorized
       else
         if @message_thread.mutual_friends.split(',').any?{ |s| s.casecmp(params['guess'])==0 } && !@message_thread.mutual_friends_found.split(',').any?{ |s| s.casecmp(params['guess'])==0 }
           @message_thread.mutual_friends+= @message_thread.mutual_friends.split(',').count==0 ? '' : ',' + params['guess']
