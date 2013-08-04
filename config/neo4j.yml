@@ -3,5 +3,5 @@ development:
     port: 7474
 
 production:
-    server: CONFIG_ME
-    port: 9000
+    server: http://358546bf0:15b51d8fc@9be678bdf.hosted.neo4j.org
+    port: 7054
