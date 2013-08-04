@@ -15,17 +15,19 @@ var MessageCtrl = ['$scope', '$routeParams', '$http', function($scope, $routePar
   };
 
   $scope.makeGuess = function(guess) {
-    $http.post("/attempt_match/"+$scope.id, {guess: guess})
-    .success(function(data, status, headers, config) {
+    $http.post("/attempt_match/" + $scope.id, {
+      guess: guess
+    })
+      .success(function(data, status, headers, config) {
         console.log(data);
         if (data.guess == "correct") {
           $scope.data.number_matched = data.count;
           $scope.guess = "";
         }
-    }).error(function(data, status, headers, config) {
+      }).error(function(data, status, headers, config) {
         console.error(data);
         console.error(status);
-    });
+      });
   };
 
   $scope.sendMessage = function(message) {
