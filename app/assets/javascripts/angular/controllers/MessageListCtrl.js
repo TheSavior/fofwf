@@ -11,7 +11,7 @@ var MessageListCtrl = ['$scope', '$http',
     };
 
     $scope.newMessage = function() {
-      $http.get("/message_threads/new")
+      $http.post("/message_threads")
         .success(function(data, status, headers, config) {
           if (data.found === true) {
             $scope.getMessages();

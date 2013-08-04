@@ -73,35 +73,34 @@ class MessageThreadsController < ApplicationController
     end
   end
 
-  def new
+  def create
     @neo = Neography::Rest.new
     query = "START a=node:user(id=\""+session['user_id']+"\") "\
       "MATCH a-[friend*2..2]-friend_of_friend "\
       "WHERE NOT (a-[friend*0..1]-friend_of_friend) "\
+      "AND NOT (a-[thread*1..1]-friend_of_friend) "\
       "AND HAS(friend_of_friend.last_login) "\
       "RETURN DISTINCT friend_of_friend"
-    response = @neo.execute_query(query)['data']
-    response.each do |user|
-      @message_thread = nil
-      @message_thread = MessageThread.where("uuid_1 = ? AND uuid_2 = ?", session['user_id'], user[-1]['data']['id'])
-      @message_thread |= MessageThread.where("uuid_1 = ? AND uuid_2 = ?", user[-1]['data']['id'], session['user_id'])
-      if !@message_thread[-1]
-        @message_thread = MessageThread.new
-        @message_thread.uuid_1 = session['user_id']
-        @message_thread.uuid_2 = user[-1]['data']['id']
-        query = "START a=node:user(id=\""+session['user_id'].to_s+"\"), b=node:user(id=\""+user[-1]['data']['id'].to_s+"\")"\
-          "MATCH a--x--b "\
-          "RETURN DISTINCT x"
-        mutual_friends = @neo.execute_query(query)['data']
-        mfs =''
-        mutual_friends.each do |mf|
-          mfs += ','+mf[-1]['data']['name']
-        end
-        @message_thread.mutual_friends=mfs[1..-1]
-        @message_thread.mutual_friends_found = ''
-        @message_thread.save
-        render json: {:found => true, :thread_id => @message_thread.id, :total =>  @message_thread.mutual_friends.split(',').count} and return
+    response = @neo.execute_query(query)['data'][-1]
+    if response
+      @message_thread = MessageThread.new
+      @message_thread.uuid_1 = session['user_id']
+      @message_thread.uuid_2 = response[-1]['data']['id']
+      query = "START a=node:user(id=\""+session['user_id'].to_s+"\"), b=node:user(id=\""+response[-1]['data']['id'].to_s+"\")"\
+        "MATCH a--x--b "\
+        "RETURN DISTINCT x"
+      mutual_friends = @neo.execute_query(query)['data']
+      mfs =''
+      mutual_friends.each do |mf|
+        mfs += ','+mf[-1]['data']['name']
       end
+      @message_thread.mutual_friends=mfs[1..-1]
+      @message_thread.mutual_friends_found = ''
+      @message_thread.save
+      node_me = @neo.get_node_index('user', 'id', @message_thread.uuid_1)
+      node_friend = @neo.get_node_index('user', 'id', @message_thread.uuid_2)
+      @neo.create_relationship("thread", node_me, node_friend)
+      render json: {:found => true, :thread_id => @message_thread.id, :total =>  @message_thread.mutual_friends.split(',').count} and return
     end
     render json: {:found => false}
   end
