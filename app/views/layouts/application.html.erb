@@ -3,24 +3,20 @@
 <head>
   <title>Fofwf</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Latest compiled and minified CSS -->
-  
-  <!-- Latest compiled and minified CSS -->
-  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/css/bootstrap.min.css">
+
   <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
   <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
   <!-- Latest compiled and minified JavaScript -->
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular-resource.min.js"></script>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/js/bootstrap.min.js"></script>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
 <%= yield %>
-
   <div class="container" ng-view>
   </div>
+  <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
 </body>
 </html>
