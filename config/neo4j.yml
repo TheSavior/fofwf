@@ -3,5 +3,7 @@ development:
     port: 7474
 
 production:
-    server: http://358546bf0:15b51d8fc@9be678bdf.hosted.neo4j.org
+    server: http://9be678bdf.hosted.neo4j.org
     port: 7054
+    username: 358546bf0
+    password: 15b51d8fc
