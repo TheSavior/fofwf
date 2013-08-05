@@ -67,7 +67,7 @@ class MessageThreadsController < ApplicationController
       render nothing: true, status: :unauthorized and return
     end
     if @message_thread.mutual_friends.split(',').any?{ |s| s.casecmp(params['guess'])==0 } && !@message_thread.mutual_friends_found.split(',').any?{ |s| s.casecmp(params['guess'])==0 }
-      @message_thread.mutual_friends_found+= @message_thread.mutual_friends_found.split(',').count==0 ? '' : ',' + params['guess']
+      @message_thread.mutual_friends_found+= (@message_thread.mutual_friends_found.split(',').count==0 ? '' : ',') + params['guess']
       @message_thread.save
       render :json => {:guess => 'correct', :count => @message_thread.mutual_friends_found.split(',').count}
     else
