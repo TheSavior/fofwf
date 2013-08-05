@@ -23,7 +23,7 @@ class MessageThreadsController < ApplicationController
        :time => time,
        :total => u.mutual_friends.split(',').count,
        :current => u.mutual_friends_found.split(',').count,
-       :friends => u.mutual_friends_found.split(','),
+       :friends => u.mutual_friends_found,
        :last_message => content}
     end
     puts  @message_threads_list
