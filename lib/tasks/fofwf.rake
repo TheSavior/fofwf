@@ -51,4 +51,10 @@ namespace :fofwf do
       @neo.add_relationship_to_index('friend', 'ids', val, rel)
     end
   end
+
+  task :test => :environment do
+    @neo = Neography::Rest.new
+    node_me = @neo.get_node_index('user', 'id', 10738237)
+    puts @neo.get_node_properties(node_me)
+  end
 end

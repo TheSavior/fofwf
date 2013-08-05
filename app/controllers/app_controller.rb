@@ -13,24 +13,27 @@ class AppController < ApplicationController
       node_me = @neo.create_node("id" => session[:user_id], "name" => env['omniauth.auth'].info.name)
       @neo.add_node_to_index('user', 'id', session[:user_id], node_me)
     end
+    update = @neo.get_node_properties(node_me)['last_login']==nil
     @neo.set_node_properties(node_me, {'last_login' => Time.now()})
-    friends.each do |friend|
-      node_friend = @neo.get_node_index('user', 'id', friend['id'])
-      if !node_friend
-        node_friend = @neo.create_node("id" => friend['id'], "name" => friend['name'])
-        @neo.add_node_to_index('user', 'id', friend['id'], node_friend)
-      end
-      id_me = @neo.get_node_properties(node_me, ['id'])['id']
-      id_friend = @neo.get_node_properties(node_friend, ['id'])['id']
-      if(id_me < id_friend)
-        val = id_me.to_s + '::' +id_friend.to_s
-      else
-        val = id_friend.to_s + '::' +id_me.to_s
-      end
-      rel = @neo.get_relationship_index('friend', 'ids', val)
-      if !rel
-        rel = @neo.create_relationship("friend", node_me, node_friend)
-        @neo.add_relationship_to_index('friend', 'ids', val, rel)
+    if update
+      friends.each do |friend|
+        node_friend = @neo.get_node_index('user', 'id', friend['id'])
+        if !node_friend
+          node_friend = @neo.create_node("id" => friend['id'], "name" => friend['name'])
+          @neo.add_node_to_index('user', 'id', friend['id'], node_friend)
+        end
+        id_me = @neo.get_node_properties(node_me, ['id'])['id']
+        id_friend = @neo.get_node_properties(node_friend, ['id'])['id']
+        if(id_me < id_friend)
+          val = id_me.to_s + '::' +id_friend.to_s
+        else
+          val = id_friend.to_s + '::' +id_me.to_s
+        end
+        rel = @neo.get_relationship_index('friend', 'ids', val)
+        if !rel
+          rel = @neo.create_relationship("friend", node_me, node_friend)
+          @neo.add_relationship_to_index('friend', 'ids', val, rel)
+        end
       end
     end
     redirect_to root_url
