@@ -88,7 +88,7 @@ class MessageThreadsController < ApplicationController
       @message_thread.uuid_1 = session['user_id']
       @message_thread.uuid_2 = response[-1]['data']['id']
       query = "START a=node:user(id=\""+session['user_id'].to_s+"\"), b=node:user(id=\""+response[-1]['data']['id'].to_s+"\")"\
-        "MATCH a--x--b "\
+        "MATCH a-[:friend]-b "\
         "RETURN DISTINCT x"
       mutual_friends = $neo.execute_query(query)['data']
       mfs =''
