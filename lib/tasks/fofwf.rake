@@ -53,11 +53,11 @@ namespace :fofwf do
 
   task :test => :environment do
      query = "START a=node:user(id=\"805780135\") "\
-      "MATCH a-[friend*2..2]-friend_of_friend "\
-      "WHERE NOT (a-[friend*0..1]-friend_of_friend) "\
-      "AND NOT (a-[thread*1..1]-friend_of_friend) "\
+      "MATCH a-[:friend*2..2]-friend_of_friend "\
+      "WHERE NOT (a-[:friend]-friend_of_friend) "\
+      "AND NOT (a-[:thread]-friend_of_friend) "\
       "AND HAS(friend_of_friend.last_login) "\
-      "RETURN DISTINCT friend_of_friend"
+      "RETURN friend_of_friend"
     puts "+++++++++++++++++++++++++++++++++++++" + Time.now().to_s
     response = $neo.execute_query(query)
     puts "=======================================" +Time.now().to_s
