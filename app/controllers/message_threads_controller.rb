@@ -26,7 +26,6 @@ class MessageThreadsController < ApplicationController
        :friends => u.mutual_friends_found,
        :last_message => content}
     end
-    puts  @message_threads_list
     render :json => @message_threads_list
   end
 
@@ -83,7 +82,6 @@ class MessageThreadsController < ApplicationController
       "AND HAS(friend_of_friend.last_login) "\
       "RETURN DISTINCT friend_of_friend"
     response = $neo.execute_query(query,{:stats => true, :profile => true})
-    puts response
     response = response['data'][-1]
     if response
       @message_thread = MessageThread.new
